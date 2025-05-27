@@ -1,3 +1,13 @@
-li {
-    text-decoration: none;
+.welcome-card {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #616161;
+    border-radius: 5px;
+    padding: 1rem;
 }
