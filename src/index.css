@@ -36,6 +36,11 @@ nav {
     justify-content: center;
 }
 
+img {
+    width: 200px;
+    height: auto;
+}
+
 ul {
     width: 100%;
     list-style-type: none;
