@@ -13,20 +13,21 @@ export default function Catalogue() {
         <>
             <NavigationBar />
             <h1>Catalogue</h1>
-            {items && items.length > 0 ? (
-                items.map((item) => (
-                    <ItemCard
-                        key={item.id}
-                        img={item.image}
-                        title={item.title}
-                        description={item.description}
-                        price={item.price}
-                        rating={item.rating}
-                    />
-                ))
-            ) : (
-                <Message>No items available</Message>
-            )}
+            <Container>
+                {items && items.length > 0 ? (
+                    items.map((item) => (
+                        <ItemCard
+                            key={item.id}
+                            img={item.image}
+                            title={item.title}
+                            price={item.price}
+                            rating={item.rating}
+                        />
+                    ))
+                ) : (
+                    <Message>No items available</Message>
+                )}
+            </Container>
         </>
     );
 }
@@ -37,4 +38,12 @@ const Message = styled.p`
     left: 50%;
     transform: translate(-50% -50%);
     font-size: 2rem;
+`;
+
+const Container = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    justify-content: center;
 `;
