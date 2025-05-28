@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
 import NavigationBar from "./NavigationBar";
 import ItemCard from "./ItemCard";
+import useFakeStoreAPI from "./hooks/useFakeStoreAPI";
+import styled from "styled-components";
 
 export default function Catalogue() {
-    const [items, setItems] = useState(null);
+    const { items, error, loading } = useFakeStoreAPI();
 
-    useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json())
-            .then((json) => setItems(json));
-    }, []);
+    if (loading) return <Message>Loading...</Message>;
+    if (error) return <Message>A network error was encountered</Message>;
 
     return (
         <>
             <NavigationBar />
             <h1>Catalogue</h1>
-            {items ? (
+            {items && items.length > 0 ? (
                 items.map((item) => (
                     <ItemCard
                         key={item.id}
@@ -27,8 +25,16 @@ export default function Catalogue() {
                     />
                 ))
             ) : (
-                <p>Loading...</p>
+                <Message>No items available</Message>
             )}
         </>
     );
 }
+
+const Message = styled.p`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    font-size: 2rem;
+`;
