@@ -1,13 +1,14 @@
 import "./App.css";
 import NavigationBar from "./components/NavigationBar";
+import styled from "styled-components";
 
 function App() {
     return (
         <>
             <NavigationBar />
             <h1>Home Page</h1>
-            <div className="welcome-card">
-                <h2>Welcome to our Fake Store</h2>
+            <WelcomeCard>
+                <h1>Welcome to our Fake Store</h1>
                 <p>
                     We have many fake items in our fake store in different
                     categories
@@ -17,9 +18,29 @@ function App() {
                     This store is created for the purpose of testing gained
                     knowledge in different React features and technologies
                 </p>
-            </div>
+            </WelcomeCard>
         </>
     );
 }
 
 export default App;
+
+const WelcomeCard = styled.div`
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #616161;
+    border-radius: 5px;
+    padding: 1rem;
+    h1 {
+        font-size: 3rem;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+`;
