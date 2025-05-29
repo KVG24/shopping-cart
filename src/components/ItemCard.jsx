@@ -1,6 +1,18 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function ItemCard({ img, title, price, rating }) {
+    const [quantity, setQuantity] = useState(1);
+
+    function increaseQuantity() {
+        setQuantity(quantity + 1);
+    }
+
+    function decreaseQuantity() {
+        if (quantity == 0) return;
+        setQuantity(quantity - 1);
+    }
+
     return (
         <>
             <StyledItemCard>
@@ -14,9 +26,9 @@ export default function ItemCard({ img, title, price, rating }) {
                         Reviews: {rating.count} | ⭐{rating.rate}
                     </p>
                     <Input>
-                        <MinusBtn>-</MinusBtn>
-                        <input type="text" />
-                        <PlusBtn>+</PlusBtn>
+                        <MinusBtn onClick={decreaseQuantity}>-</MinusBtn>
+                        <input value={quantity} type="text" />
+                        <PlusBtn onClick={increaseQuantity}>+</PlusBtn>
                     </Input>
                     <button type="button">Add to Cart</button>
                 </Wrapper>
