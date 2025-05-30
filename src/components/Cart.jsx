@@ -24,7 +24,7 @@ export default function Cart() {
                         />
                     ))
                 ) : (
-                    <p>No items in cart</p>
+                    <Message>No items in cart</Message>
                 )}
             </Container>
         </>
@@ -67,7 +67,7 @@ const StyledItemCard = styled.div`
     color: #222222;
     padding: 1rem;
     display: flex;
-    flex-direction: column;
+    gap: 1rem;
     justify-content: space-between;
     align-items: center;
 `;
@@ -92,4 +92,12 @@ const ImageContainer = styled.div`
     height: 100%;
     display: flex;
     place-items: center;
+`;
+
+const Message = styled.p`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    font-size: 2rem;
 `;

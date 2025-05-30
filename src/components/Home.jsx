@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Home() {
     return (
         <>
-            <h1>Home Page</h1>
+            <h1>Fake Store</h1>
             <WelcomeCard>
                 <h1>Welcome to our Fake Store</h1>
                 <p>
