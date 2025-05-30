@@ -7,9 +7,23 @@ export default function Catalogue() {
     const { items, error, loading } = useFakeStoreAPI();
     const { setItemsInCart } = useOutletContext();
 
-    function handleAddToCart(itemId) {
+    function handleAddToCart(itemId, quantity) {
         const selectedItem = items.find((item) => item.id == itemId);
-        setItemsInCart((prevItems) => [...prevItems, selectedItem]);
+
+        const itemWithQuantity = { ...selectedItem, quantity };
+
+        setItemsInCart((prevItems) => {
+            const isExistingItem = prevItems.find((item) => item.id === itemId);
+            if (isExistingItem) {
+                return prevItems.map((item) =>
+                    item.id === itemId
+                        ? { ...item, quantity: item.quantity + quantity }
+                        : item
+                );
+            } else {
+                return [...prevItems, itemWithQuantity];
+            }
+        });
     }
 
     if (loading) return <Message>Loading...</Message>;
@@ -27,7 +41,9 @@ export default function Catalogue() {
                             title={item.title}
                             price={item.price}
                             rating={item.rating}
-                            addToCartClick={() => handleAddToCart(item.id)}
+                            addToCartClick={(quantity) =>
+                                handleAddToCart(item.id, quantity)
+                            }
                         />
                     ))
                 ) : (

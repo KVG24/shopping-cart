@@ -20,6 +20,7 @@ export default function Cart() {
                             img={item.image}
                             title={item.title}
                             price={item.price}
+                            quantity={item.quantity}
                             deleteItem={() => deleteItemFromCart(item.id)}
                         />
                     ))
@@ -31,22 +32,31 @@ export default function Cart() {
     );
 }
 
-function ItemInCart({ img, title, price, deleteItem }) {
+function ItemInCart({ img, title, price, quantity, deleteItem }) {
     return (
-        <>
-            <StyledItemCard>
-                <ImageContainer>
-                    <img src={img} alt={title} />
-                </ImageContainer>
-                <Wrapper>
-                    <h3>{title}</h3>
-                    <Price>${price}</Price>
-                    <button type="button" onClick={deleteItem}>
-                        Delete
-                    </button>
-                </Wrapper>
-            </StyledItemCard>
-        </>
+        <StyledItemCard>
+            <ImageContainer>
+                <img src={img} alt={title} />
+            </ImageContainer>
+            <Wrapper>
+                {quantity > 1 ? (
+                    <>
+                        <h3>
+                            {quantity} x {title}
+                        </h3>
+                        <Price>${price * quantity}</Price>
+                    </>
+                ) : (
+                    <>
+                        <h3>{title}</h3>
+                        <Price>${price}</Price>
+                    </>
+                )}
+                <button type="button" onClick={deleteItem}>
+                    Delete
+                </button>
+            </Wrapper>
+        </StyledItemCard>
     );
 }
 

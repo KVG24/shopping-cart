@@ -1,5 +1,5 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function ItemCard({
     img,
@@ -11,12 +11,12 @@ export default function ItemCard({
     const [quantity, setQuantity] = useState(1);
 
     function increaseQuantity() {
-        setQuantity(quantity + 1);
+        setQuantity((prev) => prev + 1);
     }
 
     function decreaseQuantity() {
-        if (quantity == 0) return;
-        setQuantity(quantity - 1);
+        if (quantity == 1) return;
+        setQuantity((prev) => prev - 1);
     }
 
     function handleQuantityManual(e) {
@@ -44,14 +44,30 @@ export default function ItemCard({
                             // restrict the user from entering anything other than numbers
                             // could've change input type to 'number' but there will be additional arrows for fine tuning which I already made myself
                             onKeyDown={(e) => {
-                                if (!/[0-9]/.test(e.key)) {
+                                const allowedKeys = [
+                                    "Backspace",
+                                    "Delete",
+                                    "ArrowLeft",
+                                    "ArrowRight",
+                                    "Tab",
+                                    "Home",
+                                    "End",
+                                ];
+
+                                if (
+                                    !/[0-9]/.test(e.key) &&
+                                    !allowedKeys.includes(e.key)
+                                ) {
                                     e.preventDefault();
                                 }
                             }}
                         />
                         <PlusBtn onClick={increaseQuantity}>+</PlusBtn>
                     </Input>
-                    <button type="button" onClick={addToCartClick}>
+                    <button
+                        type="button"
+                        onClick={() => addToCartClick(quantity)}
+                    >
                         Add to Cart
                     </button>
                 </Wrapper>
