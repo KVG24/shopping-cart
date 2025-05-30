@@ -2,7 +2,12 @@ import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Cart() {
-    const { itemsInCart } = useOutletContext();
+    const { itemsInCart, setItemsInCart } = useOutletContext();
+
+    function deleteItemFromCart(itemId) {
+        const newArray = itemsInCart.filter((item) => item.id !== itemId);
+        setItemsInCart(newArray);
+    }
 
     return (
         <>
@@ -15,6 +20,7 @@ export default function Cart() {
                             img={item.image}
                             title={item.title}
                             price={item.price}
+                            deleteItem={() => deleteItemFromCart(item.id)}
                         />
                     ))
                 ) : (
@@ -25,7 +31,7 @@ export default function Cart() {
     );
 }
 
-function ItemInCart({ img, title, price }) {
+function ItemInCart({ img, title, price, deleteItem }) {
     return (
         <>
             <StyledItemCard>
@@ -35,6 +41,9 @@ function ItemInCart({ img, title, price }) {
                 <Wrapper>
                     <h3>{title}</h3>
                     <Price>${price}</Price>
+                    <button type="button" onClick={deleteItem}>
+                        Delete
+                    </button>
                 </Wrapper>
             </StyledItemCard>
         </>
