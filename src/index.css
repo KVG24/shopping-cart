@@ -22,7 +22,8 @@ html {
 }
 
 h1 {
-    padding: 1rem;
+    padding: 1rem 0 1rem 1rem;
+    width: max-content;
 }
 
 nav {

@@ -1,7 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function ItemCard({ img, title, price, rating }) {
+export default function ItemCard({
+    img,
+    title,
+    price,
+    rating,
+    addToCartClick,
+}) {
     const [quantity, setQuantity] = useState(1);
 
     function increaseQuantity() {
@@ -11,6 +17,10 @@ export default function ItemCard({ img, title, price, rating }) {
     function decreaseQuantity() {
         if (quantity == 0) return;
         setQuantity(quantity - 1);
+    }
+
+    function handleQuantityManual(e) {
+        setQuantity(Number(e.target.value));
     }
 
     return (
@@ -27,10 +37,23 @@ export default function ItemCard({ img, title, price, rating }) {
                     </p>
                     <Input>
                         <MinusBtn onClick={decreaseQuantity}>-</MinusBtn>
-                        <input value={quantity} type="text" />
+                        <input
+                            value={quantity}
+                            onChange={handleQuantityManual}
+                            type="text"
+                            // restrict the user from entering anything other than numbers
+                            // could've change input type to 'number' but there will be additional arrows for fine tuning which I already made myself
+                            onKeyDown={(e) => {
+                                if (!/[0-9]/.test(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
+                        />
                         <PlusBtn onClick={increaseQuantity}>+</PlusBtn>
                     </Input>
-                    <button type="button">Add to Cart</button>
+                    <button type="button" onClick={addToCartClick}>
+                        Add to Cart
+                    </button>
                 </Wrapper>
             </StyledItemCard>
         </>

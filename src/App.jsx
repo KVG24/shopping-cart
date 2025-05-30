@@ -39,8 +39,9 @@ const WelcomeCard = styled.div`
     padding: 1rem;
     h1 {
         font-size: 3rem;
+        padding: 0;
     }
     p {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 `;

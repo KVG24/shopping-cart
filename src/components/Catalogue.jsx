@@ -1,3 +1,4 @@
+import { useState } from "react";
 import NavigationBar from "./NavigationBar";
 import ItemCard from "./ItemCard";
 import useFakeStoreAPI from "./hooks/useFakeStoreAPI";
@@ -5,13 +6,19 @@ import styled from "styled-components";
 
 export default function Catalogue() {
     const { items, error, loading } = useFakeStoreAPI();
+    const [itemsInCart, setItemsInCart] = useState([]);
+
+    function handleAddToCart(itemId) {
+        const selectedItem = items.find((item) => item.id == itemId);
+        setItemsInCart((prevItems) => [...prevItems, selectedItem]);
+    }
 
     if (loading) return <Message>Loading...</Message>;
     if (error) return <Message>A network error was encountered</Message>;
 
     return (
         <>
-            <NavigationBar />
+            <NavigationBar itemCount={itemsInCart.length} />
             <h1>Catalogue</h1>
             <Container>
                 {items && items.length > 0 ? (
@@ -22,6 +29,7 @@ export default function Catalogue() {
                             title={item.title}
                             price={item.price}
                             rating={item.rating}
+                            addToCartClick={() => handleAddToCart(item.id)}
                         />
                     ))
                 ) : (

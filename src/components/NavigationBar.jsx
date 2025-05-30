@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function NavigationBar() {
+export default function NavigationBar({ itemCount = 0 }) {
     return (
         <>
             <nav>
@@ -12,7 +12,9 @@ export default function NavigationBar() {
                         <Link to="/catalogue">Catalogue</Link>
                     </li>
                     <li>
-                        <Link to="/cart">Cart</Link>
+                        <Link to="/cart">
+                            {itemCount === 0 ? "Cart" : `Cart (${itemCount})`}
+                        </Link>
                     </li>
                 </ul>
             </nav>
