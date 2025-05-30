@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
+import Home from "./components/Home.jsx";
 import Catalogue from "./components/Catalogue.jsx";
 import Cart from "./components/Cart.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
@@ -12,14 +13,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <App />,
         errorElement: <ErrorPage />,
-    },
-    {
-        path: "catalogue",
-        element: <Catalogue />,
-    },
-    {
-        path: "cart",
-        element: <Cart />,
+        children: [
+            { path: "home", element: <Home /> },
+            { path: "catalogue", element: <Catalogue /> },
+            { path: "cart", element: <Cart /> },
+        ],
     },
 ]);
 

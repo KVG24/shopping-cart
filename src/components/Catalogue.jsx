@@ -1,12 +1,11 @@
-import { useState } from "react";
-import NavigationBar from "./NavigationBar";
 import ItemCard from "./ItemCard";
 import useFakeStoreAPI from "./hooks/useFakeStoreAPI";
 import styled from "styled-components";
+import { useOutletContext } from "react-router-dom";
 
 export default function Catalogue() {
     const { items, error, loading } = useFakeStoreAPI();
-    const [itemsInCart, setItemsInCart] = useState([]);
+    const { setItemsInCart } = useOutletContext();
 
     function handleAddToCart(itemId) {
         const selectedItem = items.find((item) => item.id == itemId);
@@ -18,7 +17,6 @@ export default function Catalogue() {
 
     return (
         <>
-            <NavigationBar itemCount={itemsInCart.length} />
             <h1>Catalogue</h1>
             <Container>
                 {items && items.length > 0 ? (
