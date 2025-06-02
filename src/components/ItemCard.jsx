@@ -35,9 +35,11 @@ export default function ItemCard({
                     <p>
                         Reviews: {rating.count} | ⭐{rating.rate}
                     </p>
-                    <Input>
-                        <MinusBtn onClick={decreaseQuantity}>-</MinusBtn>
-                        <input
+                    <InputContainer>
+                        <ControlBtn $minus onClick={decreaseQuantity}>
+                            -
+                        </ControlBtn>
+                        <StyledInput
                             value={quantity}
                             onChange={handleQuantityManual}
                             type="text"
@@ -62,8 +64,10 @@ export default function ItemCard({
                                 }
                             }}
                         />
-                        <PlusBtn onClick={increaseQuantity}>+</PlusBtn>
-                    </Input>
+                        <ControlBtn $plus onClick={increaseQuantity}>
+                            +
+                        </ControlBtn>
+                    </InputContainer>
                     <button
                         type="button"
                         onClick={() => addToCartClick(quantity)}
@@ -97,20 +101,28 @@ const Wrapper = styled.div`
     place-items: center;
 `;
 
-const Input = styled.div`
+const InputContainer = styled.div`
     display: flex;
     height: 30px;
 `;
 
-const PlusBtn = styled.button`
-    border-radius: 0 10px 10px 0;
+const StyledInput = styled.input`
+    font-weight: 500;
+    font-size: 1rem;
+`;
+
+const ControlBtn = styled.button`
     background-color: #464646;
     color: white;
     padding: 0 0.5rem;
-`;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    display: flex;
 
-const MinusBtn = styled(PlusBtn)`
-    border-radius: 10px 0 0 10px;
+    border-radius: ${({ $plus, $minus }) =>
+        $plus ? "0 10px 10px 0" : $minus ? "10px 0 0 10px" : "0"};
 `;
 
 const Price = styled.p`

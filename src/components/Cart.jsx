@@ -44,7 +44,15 @@ function ItemInCart({ img, title, price, quantity, deleteItem }) {
                         <h3>
                             {quantity} x {title}
                         </h3>
-                        <Price>${price * quantity}</Price>
+                        <Price>
+                            <CalculatedPrice>
+                                {quantity} X ${price}
+                            </CalculatedPrice>
+                            $
+                            {(Math.floor(price * quantity * 100) / 100).toFixed(
+                                2
+                            )}
+                        </Price>
                     </>
                 ) : (
                     <>
@@ -95,6 +103,15 @@ const Price = styled.p`
     background-color: ${colors.accent};
     border-radius: 5px;
     padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const CalculatedPrice = styled.span`
+    font-size: 1rem;
+    text-align: center;
+    color: #424242;
 `;
 
 const ImageContainer = styled.div`

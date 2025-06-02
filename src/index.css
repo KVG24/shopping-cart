@@ -23,7 +23,6 @@ html {
 
 h1 {
     padding: 1rem 0 1rem 1rem;
-    width: max-content;
 }
 
 nav {
@@ -79,14 +78,4 @@ button {
     background-color: #a9a3e7;
     color: black;
     cursor: pointer;
-    transition: border-color 0.25s;
-    display: flex;
-    place-items: center;
-}
-button:hover {
-    border-color: #003fc7;
-}
-button:focus,
-button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
 }
