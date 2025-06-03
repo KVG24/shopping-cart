@@ -94,7 +94,8 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Price = styled.p`
@@ -118,7 +119,8 @@ const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Message = styled.p`

@@ -81,6 +81,10 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    border: 2px solid black;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: 1.5rem;
@@ -88,5 +92,8 @@ button {
     }
     nav {
         padding: 0.7rem 1rem 0.5rem 0;
+    }
+    img {
+        width: 50%;
     }
 }

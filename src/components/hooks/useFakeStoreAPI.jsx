@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFakeStoreAPI = () => {
+export default function useFakeStoreAPI() {
     const [items, setItems] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -19,6 +19,4 @@ const useFakeStoreAPI = () => {
     }, []);
 
     return { items, error, loading };
-};
-
-export default useFakeStoreAPI;
+}
