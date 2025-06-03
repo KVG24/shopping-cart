@@ -30,7 +30,7 @@ export default function ItemCard({
                     <img src={img} alt={title} />
                 </ImageContainer>
                 <Wrapper>
-                    <h3>{title}</h3>
+                    <AdaptiveTitle>{title}</AdaptiveTitle>
                     <Price>${price}</Price>
                     <p>
                         Reviews: {rating.count} | ⭐{rating.rate}
@@ -68,12 +68,12 @@ export default function ItemCard({
                             +
                         </ControlBtn>
                     </InputContainer>
-                    <button
+                    <AdaptiveButton
                         type="button"
                         onClick={() => addToCartClick(quantity)}
                     >
                         Add to Cart
-                    </button>
+                    </AdaptiveButton>
                 </Wrapper>
             </StyledItemCard>
         </>
@@ -92,6 +92,10 @@ const StyledItemCard = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 600px) {
+        padding: 5px;
+    }
 `;
 
 const Wrapper = styled.div`
@@ -99,16 +103,28 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 1rem;
     place-items: center;
+
+    @media (max-width: 600px) {
+        gap: 0.5rem;
+    }
 `;
 
 const InputContainer = styled.div`
     display: flex;
     height: 30px;
+
+    @media (max-width: 600px) {
+        width: 100px;
+    }
 `;
 
 const StyledInput = styled.input`
     font-weight: 500;
     font-size: 1rem;
+
+    @media (max-width: 600px) {
+        width: 30px;
+    }
 `;
 
 const ControlBtn = styled.button`
@@ -138,4 +154,20 @@ const ImageContainer = styled.div`
     height: 100%;
     display: flex;
     place-items: center;
+`;
+
+const AdaptiveButton = styled.button`
+    @media (max-width: 600px) {
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+`;
+
+const AdaptiveTitle = styled.p`
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    @media (max-width: 600px) {
+        font-size: 1rem;
+    }
 `;

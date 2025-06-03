@@ -40,4 +40,8 @@ const CartLink = styled(Link)`
         border-radius: 50%;
         padding: 2px 6px;
     }
+
+    @media (max-width: 600px) {
+        padding: 0.5rem 0 0.5rem 0;
+    }
 `;

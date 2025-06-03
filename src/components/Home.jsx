@@ -24,6 +24,7 @@ export default function Home() {
 }
 
 const Wrapper = styled.div`
+    margin-top: 1rem;
     background-image: url(${backgroundImg});
     background-position: center;
     background-repeat: no-repeat;
@@ -53,14 +54,14 @@ const WelcomeCard = styled.div`
 const Heading = styled.h1`
     font-size: 3rem;
 
-    @media (max-width: 500px) {
-        font-size: 2rem;
+    @media (max-width: 600px) {
+        font-size: 1.5rem;
     }
 `;
 
 const Text = styled.p`
     font-size: 1.5rem;
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         font-size: 1rem;
     }
 `;

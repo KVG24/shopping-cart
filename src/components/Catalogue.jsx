@@ -68,4 +68,9 @@ const Container = styled.div`
     gap: 16px;
     padding: 16px;
     justify-content: center;
+
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        padding: 1rem;
+    }
 `;
